@@ -37,14 +37,29 @@ useEffect(() => {
 }, []);
 
 // Formatted today's date state
-const [todayDate, setTodayDate] = useState('');
+const [selectedDate, setSelectedDate] = useState('');
 
-useEffect(() => {
-    const date = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = date.toLocaleDateString('en-US', options);
-    setTodayDate(formattedDate);
-}, []);
+  // Load the date from local storage when the component mounts
+  useEffect(() => {
+    const storedDate = localStorage.getItem('selectedDate');
+    if (storedDate) {
+      setSelectedDate(storedDate);
+    }
+  }, []);
+
+  // Save the date to local storage whenever it changes
+  useEffect(() => {
+    if (selectedDate) {
+      localStorage.setItem('selectedDate', selectedDate);
+    }
+  }, [selectedDate]);
+
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
+
+
 
 // Add a new item to the list and local storage
 const addItem = () => {
@@ -53,6 +68,7 @@ const addItem = () => {
     const newItem = {
         id: Date.now(),
         value: inputValue,
+        date:selectedDate||dateTime.date,
         image: null // Initialize with no image
     };
 
@@ -116,6 +132,12 @@ return (
                     <button onClick={color} style={{ margin: '10px', height: '30px' }}>☀︎</button>
                 </div>
             </div>
+            <input
+              type="date"
+              id="dateInput"
+              value={selectedDate}
+              onChange={handleDateChange}
+            />
             <div style={{ margin: '10px', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
                 <textarea
                     type='text'
@@ -132,7 +154,7 @@ return (
                 <div style={{ display: 'flex', flexDirection: 'column', width: '300px', flexWrap: 'wrap' }}>
                     {items.map((item) => (
                         <div key={item.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', margin: '5px', overflowWrap: 'anywhere', color: text, background: '#2a9d8f', borderRadius: '10px' }}>
-                           <p style={{ color: text, fontSize: '15px', margin: '5px', transition: '3s ease-out' }}>{todayDate}</p>
+                           <p style={{ color: text, fontSize: '15px', margin: '5px', transition: '3s ease-out' }}>{item.date}</p>
                             <div style={{ margin: '5px', transition: '3s ease-out', fontFamily: 'cursive' }}>{item.value}</div>
                             <div style={{ margin: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 {item.image ? (
