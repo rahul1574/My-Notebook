@@ -40,12 +40,12 @@ useEffect(() => {
 const [selectedDate, setSelectedDate] = useState('');
 
   // Load the date from local storage when the component mounts
-  useEffect(() => {
-    const storedDate = localStorage.getItem('selectedDate');
-    if (storedDate) {
-      setSelectedDate(storedDate);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedDate = localStorage.getItem('selectedDate');
+  //   if (storedDate) {
+  //     setSelectedDate(storedDate);
+  //   }
+  // }, []);
 
   // Save the date to local storage whenever it changes
   useEffect(() => {
@@ -133,28 +133,33 @@ return (
                 </div>
             </div>
             <input
-              type="date"
+              type="datetime-local"
               id="dateInput"
               value={selectedDate}
               onChange={handleDateChange}
             />
             <div style={{ margin: '10px', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                <textarea
-                    type='text'
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="What about today...."
-                    style={{ margin: '10px', height: '30px', textAlign: 'center' }}
-                />
-                <button onClick={addItem} style={{ margin: '10px', height: '30px', background: 'green' }}>
+                {selectedDate?(
+                  <textarea
+                  type='text'
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="What about today...."
+                  style={{ margin: '10px', height: '30px', textAlign: 'center' }}
+                 />
+                ):(
+                  // <p style={{color:text,transition: '3s ease-out'}}>Enter today's date</p>
+                  <span></span>
+                )}
+            </div>
+            <button onClick={addItem} style={{ margin: '10px', height: '30px', background: 'green' }}>
                     <i className="fa-solid fa-upload" style={{ color: text, transition: '3s ease-out' }}></i>
                 </button>
-            </div>
             <div style={{ width: '300px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', width: '300px', flexWrap: 'wrap' }}>
                     {items.map((item) => (
                         <div key={item.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', margin: '5px', overflowWrap: 'anywhere', color: text, background: '#2a9d8f', borderRadius: '10px' }}>
-                           <p style={{ color: text, fontSize: '15px', margin: '5px', transition: '3s ease-out' }}>{item.date}</p>
+                           <p style={{ color: text, fontSize: '15px', margin: '5px', transition: '3s ease-out' }}>{item.date} </p>
                             <div style={{ margin: '5px', transition: '3s ease-out', fontFamily: 'cursive' }}>{item.value}</div>
                             <div style={{ margin: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 {item.image ? (
