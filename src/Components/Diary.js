@@ -135,6 +135,7 @@ return (
             <input
               type="datetime-local"
               id="dateInput"
+              placeholder="Enter today's date..."
               value={selectedDate}
               onChange={handleDateChange}
             />
