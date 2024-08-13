@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 function Diary() {
    // State to hold the items with unique identifiers and associated images
    const [items, setItems] = useState(() => {
-    const savedItems = localStorage.getItem('items');
+    const savedItems = localStorage.getItem('item');
     return savedItems ? JSON.parse(savedItems) : [];
 });
 
@@ -135,7 +135,6 @@ return (
             <input
               type="datetime-local"
               id="dateInput"
-              placeholder="Enter today's date..."
               value={selectedDate}
               onChange={handleDateChange}
             />
