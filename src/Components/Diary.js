@@ -74,7 +74,7 @@ const addItem = () => {
 
     const updatedItems = [newItem, ...items];
     setItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
+    localStorage.setItem('item', JSON.stringify(updatedItems));
     setInputValue('');
 };
 
@@ -82,7 +82,7 @@ const addItem = () => {
 const deleteItem = (id) => {
     const updatedItems = items.filter(item => item.id !== id);
     setItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
+    localStorage.setItem('item', JSON.stringify(updatedItems));
 };
 
 // Handle image upload for a specific item
@@ -98,7 +98,7 @@ const handleImageUpload = (event, id) => {
             );
 
             setItems(updatedItems);
-            localStorage.setItem('items', JSON.stringify(updatedItems));
+            localStorage.setItem('item', JSON.stringify(updatedItems));
         };
         reader.readAsDataURL(file);
     }
@@ -111,7 +111,7 @@ const handleImageRemove = (id) => {
     );
 
     setItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
+    localStorage.setItem('item', JSON.stringify(updatedItems));
 };
 const [fileInputVisibility, setFileInputVisibility] = useState({});
 const toggleFileInput = (id) => {
