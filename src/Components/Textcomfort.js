@@ -38,10 +38,10 @@ const color = () => {
     settexts(texts === 'black' ? 'white' : 'black');
 };
   return (
-    <div style={{background:back}}>
+    <div style={{background:back, transition: '3s ease-out'}}>
       <div style={{display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-              <h2 style={{margin:'5px',color:texts}}>Put your text below</h2>
+              <h2 style={{margin:'5px',color:texts, transition: '3s ease-out'}}>Put your text below</h2>
               <button onClick={color} style={{ margin: '10px', height: '30px' }}>☀︎</button>
             </div>
             <textarea placeholder="Enter text here..." value={text} onChange={changetext} style={{margin:'5px'}}></textarea>
@@ -53,11 +53,11 @@ const color = () => {
         <button style={{ background:'blue',margin:'2px',border:'none',borderRadius:'5px',height:'30px',color:'white'}} onClick={reversetext}>Reverse text</button>
         <button  style={{ background:'blue',margin:'2px',border:'none',borderRadius:'5px',height:'30px',color:'white'}}onClick={copytext}>copy text</button>
         </div>
-        <h2 style={{margin:'5px',color:texts}} >Your text summary</h2>
-        <p style={{margin:'5px',color:texts}}>Above text consists of {text.split(" ").length} words and {text.length} characters</p>
-        <p style={{margin:'5px',color:texts}}>You can read this in {0.08*text.split(" ").length} minutes</p>
-        <h2 style={{margin:'5px',color:texts}}>Preview</h2>
-        <p style={{margin:'5px',color:texts}}>{text}</p>
+        <h2 style={{margin:'5px',color:texts , transition: '3s ease-out'}} >Your text summary</h2>
+        <p style={{margin:'5px',color:texts , transition: '3s ease-out'}}>Above text consists of {text.split(" ").length} words and {text.length} characters</p>
+        <p style={{margin:'5px',color:texts , transition: '3s ease-out'}}>You can read this in {0.08*text.split(" ").length} minutes</p>
+        <h2 style={{margin:'5px',color:texts , transition: '3s ease-out'}}>Preview</h2>
+        <p style={{margin:'5px',color:texts , transition: '3s ease-out'}}>{text}</p>
     </div>
   )
 }
